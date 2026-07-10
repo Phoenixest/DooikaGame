@@ -6,7 +6,6 @@
     <title>DooikaGame</title>
     <link class="game-favicon" rel="shortcut icon" href="TemplateData/favicon.svg">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <!-- Tailwind CSS para diseño rápido y moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center justify-between font-sans overflow-x-hidden selection:bg-indigo-500/30">
@@ -14,13 +13,11 @@
     <!-- Cabecera y Logo del Juego -->
     <header class="flex flex-col items-center mt-8 mb-4">
         <div class="logo-container flex items-center justify-center gap-3">
-          <!-- Imagen del logo con fallback nativo en caso de que no cargue -->
             <img src="TemplateData/Logo.png" alt="DooikaGame" class="game-logo max-h-16 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <span style="display: none;" class="text-2xl font-black text-white tracking-widest uppercase">DooikaGame</span>
         </div>
     </header>
 
-    <!-- Banner para notificaciones y errores del motor Unity -->
     <div id="unity-warning" class="fixed top-4 z-50 max-w-md w-full px-4" style="display:none;"></div>
 
     <!-- Layout Principal -->
@@ -39,8 +36,8 @@
         </aside>
 
         <!-- Contenedor del Juego -->
-        <div id="unity-container-wrapper" class="w-full flex flex-col items-center">
-          <div id="unity-container" class="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950 shadow-2xl" style="width: 100%; max-width: 338px; aspect-ratio: 338 / 600;">
+        <div id="unity-container-wrapper" class="w-full flex flex-col items-center max-w-[338px]">
+          <div id="unity-container" class="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950 shadow-2xl w-full" style="width: 100%; max-width: 338px; aspect-ratio: 338 / 600;">
               <canvas id="unity-canvas" tabindex="-1" class="w-full h-full block"></canvas>
               <div id="unity-loading-bar" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/90 gap-4">
                   <div id="unity-progress-bar-empty" class="w-48 h-1.5 bg-slate-800 rounded-full overflow-hidden">
@@ -49,7 +46,7 @@
               </div>
           </div>
 
-          <button id="unity-fullscreen-button" class="mt-4 px-6 py-2.5 bg-slate-900 border border-white/5 hover:border-indigo-500/30 hover:bg-slate-850 text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-200 flex items-center gap-2 text-slate-350 hover:text-white">
+          <button id="unity-fullscreen-button" class="mt-4 px-6 py-2.5 bg-slate-900 border border-white/5 hover:border-indigo-500/30 hover:bg-slate-800 text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-200 flex items-center gap-2 text-slate-400 hover:text-white">
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path d="M1 1v6h2V3h4V1H1zm12 0v2h4v4h2V1h-6zM1 19h6v-2H3v-4H1v6zm16-4v4h-4v2h6v-6h-2z"/></svg>
                 Pantalla Completa
             </button>

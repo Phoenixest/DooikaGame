@@ -4,86 +4,82 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>DooikaGame</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.svg">
+    <link class="game-favicon" rel="shortcut icon" href="TemplateData/favicon.svg">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <!-- Tailwind CSS para diseño rápido y moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center justify-between font-sans overflow-x-hidden selection:bg-indigo-500/30">
 
-    <!-- Logo del Juego -->
-    <header class="flex flex-col items-center">
-        <div class="logo-container">
-            <img src="TemplateData/logo.png" alt="DooikaGame" class="game-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <span class="hidden text-xl font-black text-white tracking-widest uppercase">DooikaGame</span>
+    <!-- Cabecera y Logo del Juego -->
+    <header class="flex flex-col items-center mt-8 mb-4">
+        <div class="logo-container flex items-center justify-center gap-3">
+          <!-- Imagen del logo con fallback nativo en caso de que no cargue -->
+            <img src="TemplateData/Logo.png" alt="DooikaGame" class="game-logo max-h-16 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span style="display: none;" class="text-2xl font-black text-white tracking-widest uppercase">DooikaGame</span>
         </div>
-        <p class="text-indigo-400 text-[10px] font-bold uppercase tracking-[0.4em]">Web Experience</p>
     </header>
 
-    <div id="unity-warning"></div>
+    <!-- Banner para notificaciones y errores del motor Unity -->
+    <div id="unity-warning" class="fixed top-4 z-50 max-w-md w-full px-4" style="display:none;"></div>
 
     <!-- Layout Principal -->
-    <main class="main-layout">
-        <aside class="side-gallery left-side">
-            <div class="circle-item">
-                <img src="TemplateData/img1.png" alt="1" onerror="this.style.display='none';">
-                <span class="text-[10px] text-slate-400 font-bold">1</span>
+    <main class="main-layout flex flex-col lg:flex-row items-center justify-center gap-8 my-auto w-full max-w-7xl px-4">
+
+      <!-- Galería Lateral Izquierda -->
+        <aside class="side-gallery left-side flex lg:flex-col gap-4 justify-center">
+            <div class="circle-item flex flex-col items-center bg-slate-900/60 border border-white/5 p-3 rounded-2xl shadow-xl hover:border-indigo-500/30 transition-all duration-300">
+                <img src="TemplateData/img1.png" alt="1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;" class="text-[10px] text-slate-400 font-bold">1</span>
             </div>
-            <div class="circle-item">
-                <img src="TemplateData/img3.png" alt="3" onerror="this.style.display='none';">
-                <span class="text-[10px] text-slate-400 font-bold">3</span>
+            <div class="circle-item flex flex-col items-center bg-slate-900/60 border border-white/5 p-3 rounded-2xl shadow-xl hover:border-indigo-500/30 transition-all duration-300">
+                <img src="TemplateData/img3.png" alt="3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;" class="text-[10px] text-slate-400 font-bold">3</span>
             </div>
         </aside>
 
-        <div id="unity-container-wrapper">
-          <div id="unity-container" style="width: 338px; aspect-ratio: 338 / 600;">
-              <canvas id="unity-canvas" tabindex="-1"></canvas>
-              <div id="unity-loading-bar">
-                  <div class="w-8 h-8 border border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-                  <div id="unity-progress-bar-empty">
-                      <div id="unity-progress-bar-full"></div>
+        <!-- Contenedor del Juego -->
+        <div id="unity-container-wrapper" class="w-full flex flex-col items-center">
+          <div id="unity-container" class="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950 shadow-2xl" style="width: 100%; max-width: 338px; aspect-ratio: 338 / 600;">
+              <canvas id="unity-canvas" tabindex="-1" class="w-full h-full block"></canvas>
+              <div id="unity-loading-bar" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/90 gap-4">
+                  <div id="unity-progress-bar-empty" class="w-48 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                      <div id="unity-progress-bar-full" class="h-full bg-indigo-500 transition-all duration-150" style="width: 0%;"></div>
                   </div>
               </div>
           </div>
 
-          <button id="unity-fullscreen-button" class="fullscreen-btn">
+          <button id="unity-fullscreen-button" class="mt-4 px-6 py-2.5 bg-slate-900 border border-white/5 hover:border-indigo-500/30 hover:bg-slate-850 text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-200 flex items-center gap-2 text-slate-350 hover:text-white">
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path d="M1 1v6h2V3h4V1H1zm12 0v2h4v4h2V1h-6zM1 19h6v-2H3v-4H1v6zm16-4v4h-4v2h6v-6h-2z"/></svg>
                 Pantalla Completa
             </button>
         </div>
 
-        <aside class="side-gallery right-side">
-            <div class="circle-item">
-                <img src="TemplateData/img2.png" alt="2" onerror="this.style.display='none';">
-                <span class="text-[10px] text-slate-400 font-bold">2</span>
+        <!-- Galería Lateral Derecha -->
+        <aside class="side-gallery right-side flex lg:flex-col gap-4 justify-center">
+            <div class="circle-item flex flex-col items-center bg-slate-900/60 border border-white/5 p-3 rounded-2xl shadow-xl hover:border-indigo-500/30 transition-all duration-300">
+                <img src="TemplateData/img2.png" alt="2" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;" class="text-[10px] text-slate-400 font-bold">2</span>
             </div>
-            <div class="circle-item">
-                <img src="TemplateData/img4.png" alt="4" onerror="this.style.display='none';">
-                <span class="text-[10px] text-slate-400 font-bold">4</span>
+            <div class="circle-item flex flex-col items-center bg-slate-900/60 border border-white/5 p-3 rounded-2xl shadow-xl hover:border-indigo-500/30 transition-all duration-300">
+                <img src="TemplateData/img4.png" alt="4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;" class="text-[10px] text-slate-400 font-bold">4</span>
             </div>
         </aside>
     </main>
 
     <!-- Footer: Quienes Somos -->
-    <footer class="w-full max-w-2xl px-6 mb-16">
-        <div class="bg-slate-900/50 border border-white/5 p-8 flex items-center gap-8 relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-1 h-full bg-indigo-600"></div>
-            <div class="w-[55px] h-[55px] bg-slate-800 flex items-center justify-center border border-white/10 shrink-0">
-                <img src="TemplateData/company_logo.png" alt="Icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="hidden text-xl">🏢</span>
-            </div>
-            <div class="flex-1">
-                <h3 class="text-xs font-black text-indigo-400 uppercase tracking-[0.2em] mb-2">Quiénes Somos</h3>
-                <p class="text-slate-400 text-xs leading-relaxed font-medium">
-                    Picatchi Games es un equipo de desarrollo de Videojuegos Indie. 
-                    Diseñamos cada píxel para ofrecer la mejor calidad.
-                </p>
-            </div>
+    <footer class="w-full max-w-2xl px-6 mb-16 flex justify-center">
+        <div class="w-[64px] h-[64px] bg-slate-900/50 border border-white/5 flex items-center justify-center rounded-2xl shadow-xl shrink-0 hover:border-indigo-500/30 transition-all duration-300">
+            <img src="TemplateData/company_logo.png" alt="Icon" class="max-h-10 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span style="display: none;" class="text-2xl">🏢</span>
         </div>
         <div class="mt-10 text-center text-slate-700 text-[9px] tracking-[0.5em] uppercase font-bold">
             &copy; Pikatchi Games - DooikaGame
         </div>
     </footer>
 
+    <!-- Script oficial de inicialización para Unity -->
     <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
@@ -92,12 +88,6 @@
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
 
-      // Shows a temporary message banner/ribbon for a few seconds, or
-      // a permanent error message on top of the canvas if type=='error'.
-      // If type=='warning', a yellow highlight color is used.
-      // Modify or remove this function to customize the visually presented
-      // way that non-critical warnings and error messages are presented to the
-      // user.
       function unityShowBanner(msg, type) {
         function updateBannerVisibility() {
           warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
@@ -105,9 +95,12 @@
         var div = document.createElement('div');
         div.innerHTML = msg;
         warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: rgba(255,0,0,0.8); padding: 10px; margin-bottom: 5px;';
-        else {
-          if (type == 'warning') div.style = 'background: rgba(255,255,0,0.8); color: black; padding: 10px; margin-bottom: 5px;';
+        if (type == 'error') {
+          div.style.cssText = 'background: rgba(220, 38, 38, 0.95); color: white; padding: 12px; margin-bottom: 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); font-size: 13px; font-weight: 500;';
+        } else {
+          if (type == 'warning') {
+            div.style.cssText = 'background: rgba(217, 119, 6, 0.95); color: white; padding: 12px; margin-bottom: 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); font-size: 13px; font-weight: 500;';
+          }
           setTimeout(function() {
             warningBanner.removeChild(div);
             updateBannerVisibility();
@@ -129,32 +122,16 @@
         showBanner: unityShowBanner,
       };
 
-      // By default, Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
-
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-
         var meta = document.createElement('meta');
         meta.name = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
         container.style.width = "100vw";
         container.style.height = "100vh";
-
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
-
       } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-
-        canvas.style.width = "338px";
-        canvas.style.height = "600px";
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
       }
 
       var script = document.createElement("script");
@@ -168,12 +145,11 @@
                   unityInstance.SetFullscreen(1);
                 };
               }).catch((message) => {
-                alert(message);
+                unityShowBanner(message, 'error');
               });
             };
 
       document.body.appendChild(script);
-
     </script>
   </body>
 </html>

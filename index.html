@@ -124,8 +124,19 @@
         meta.name = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
+        
+        var wrapper = document.querySelector("#unity-container-wrapper")
+        if (wrapper) wrapper.style.maxWidth = "100%";
+        
         container.style.width = "100vw";
-        container.style.height = "100vh";
+
+        function adjustMobileHeight() {
+          container.style.height = window.innerHeight + "px";
+        }
+
+        adjustMobileHeight();
+        window.addEventListener('resize', adjustMobileHeight);
+        
       } else {
         canvas.style.width = "100%";
         canvas.style.height = "100%";
